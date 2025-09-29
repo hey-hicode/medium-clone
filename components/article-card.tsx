@@ -1,6 +1,7 @@
-import { Heart, MessageCircle, Bookmark, CircleSlash, MoreHorizontal, Sparkles, Hand } from "lucide-react"
+import { MessageCircle, Bookmark, CircleSlash, MoreHorizontal, Sparkles, Hand } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import Link from "next/link"
 
 interface ArticleCardProps {
   id: string
@@ -21,22 +22,24 @@ interface ArticleCardProps {
 }
 
 export function ArticleCard({
-  id,
   title,
   excerpt,
   author,
   publishedAt,
-  readTime,
-  claps,
   responses,
   topic,
   image,
-  featured = false,
 }: ArticleCardProps) {
+  // Create slug from title
+  const slug = title.toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '')
+
   return (
     <article className="group cursor-pointer py-6 md:py-8 border-b border-gray-100 last:border-b-0">
-      <div className="flex flex-col md:flex-row gap-4 md:gap-6">
-        <div className="flex-1 order-2 md:order-1">
+      <Link href={`/blog/${slug}`}>
+        <div className="flex flex-col md:flex-row gap-4 md:gap-6">
+          <div className="flex-1 order-2 md:order-1">
           <div className="flex items-center gap-2 mb-3">
             <Avatar className="h-8 rounded-sm w-8">
               <AvatarImage src={author.avatar || "/placeholder.svg"} />
@@ -97,7 +100,8 @@ export function ArticleCard({
             />
           </div>
         )}
-      </div>
+        </div>
+      </Link>
     </article>
   )
 }
