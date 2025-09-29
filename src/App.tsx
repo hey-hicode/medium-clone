@@ -1,12 +1,11 @@
-import { Header } from "@/components/header";
-import { NavigationTabs } from "@/components/navigation-tabs";
-import { ArticleCard } from "@/components/article-card";
-import { Sidebar } from "@/components/sidebar";
-import { articlesData } from "@/lib/articles-data";
-import React from "react";
+import { Header } from "./components/Header"
+import { NavigationTabs } from "./components/NavigationTabs"
+import { ArticleCard } from "./components/ArticleCard"
+import { Sidebar } from "./components/Sidebar"
+import { articlesData } from "./lib/articles-data"
+import "./App.css"
 
-
-export default function HomePage() {
+function App() {
   return (
     <div className="min-h-screen bg-white">
       <Header />
@@ -22,7 +21,7 @@ export default function HomePage() {
             </div>
           </main>
 
-          <div className="hidden border-l border-gray-200 pl-10 lg:block">
+          <div className="hidden lg:block">
             <Sidebar />
           </div>
         </div>
@@ -30,3 +29,5 @@ export default function HomePage() {
     </div>
   )
 }
+
+export default App
